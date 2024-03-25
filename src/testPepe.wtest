@@ -2,8 +2,83 @@ import pepe.*
 
 describe "Sueldo Pepe" {
 	
-	test "Test 1" {
-		//TODO: Implementame
+	test "pepe cadete - bono resultado monto fijo - presentismo normal - 3 faltas" {
+		pepe.faltas(3)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoMontoFijo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(20800, pepe.sueldo())
+	}
+	
+	test "pepe gerente - bono resultado porcentaje - presentismo nulo - 0 faltas" {
+		pepe.faltas(0)
+		pepe.categoria(gerente)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoNulo)
+		assert.equals(16500, pepe.sueldo())
+	}
+	
+	test "pepe cadete - bono resultado porcentaje - presentismo normal - 0 faltas" {
+		pepe.faltas(0)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(24000, pepe.sueldo())
+	}
+	
+	test "pepe cadete - bono resultado porcentaje - presentismo normal - 1 falta" {
+		pepe.faltas(1)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(23000, pepe.sueldo())
+	}
+	
+	
+	test "pepe gerente - sin bono resultado - presentismo normal - sin faltas" {
+		pepe.faltas(0)
+		pepe.bonoResultado(bonoResultadoNulo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(17000, pepe.sueldo())
+	}
+	
+	test "pepe gerente - sin bono resultado - presentismo normal - con una falta" {
+		pepe.faltas(1)
+		pepe.bonoResultado(bonoResultadoNulo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(16000, pepe.sueldo())
+	}
+	
+	test "pepe gerente - sin bono resultado - presentismo normal - con mas de una falta" {
+		pepe.faltas(2)
+		pepe.bonoResultado(bonoResultadoNulo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(15000, pepe.sueldo() )
+	}
+	
+	
+	test "pepe cadete - bono resultado porcentaje - presentismo normal - sin falta" {
+		pepe.faltas(0)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		assert.equals(24000, pepe.sueldo())
+	}
+	
+	test "pepe cadete - bono resultado porcentaje - presentismo ajuste - con una falta" {
+		pepe.faltas(1)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoAjuste)
+		assert.equals(22000, pepe.sueldo())
+	}
+	
+	test "pepe cadete - bono resultado porcentaje - presentismo demagogico - sin falta" {
+		pepe.faltas(1)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoResultadoPorcentaje)
+		pepe.bonoPresentismo(bonoPresentismoDemagogico)
+		assert.equals(22300, pepe.sueldo())
 	}
 
 	
